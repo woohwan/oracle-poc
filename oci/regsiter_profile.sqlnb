@@ -91,5 +91,42 @@ cells:
       /
     languageId: oracle-sql
   - kind: 2
+    value: >-
+      -- SYS 또는 네트워크 ACL 관리 권한이 있는 계정으로 실행
+
+      BEGIN
+        DBMS_NETWORK_ACL_ADMIN.APPEND_HOST_ACE(
+          host       => 'inference.generativeai.us-chicago-1.oci.oraclecloud.com', -- 사용 중인 리전
+          ace        => xs$ace_type(
+                          privilege_list => xs$name_list('connect','resolve'),
+                          principal_name => 'SALTWARE',           -- DBMS_VECTOR를 호출하는 DB 사용자
+                          principal_type => xs_acl.ptype_db
+                        )
+        );
+      END;
+
+      /
+
+      COMMIT;
+    languageId: oracle-sql
+  - kind: 2
+    value: |
+      SELECT
+        sys_context('userenv','session_user')   AS session_user,
+        sys_context('userenv','current_schema') AS current_schema
+      FROM dual;
+    languageId: oracle-sql
+  - kind: 2
+    value: |
+      SET SERVEROUTPUT ON
+      DECLARE
+        resp CLOB;
+      BEGIN
+        resp := utl_http.request('https://www.oracle.com');
+        dbms_output.put_line('OK! length=' || length(resp));
+      END;
+      /
+    languageId: oracle-sql
+  - kind: 2
     value: ""
     languageId: oracle-sql
