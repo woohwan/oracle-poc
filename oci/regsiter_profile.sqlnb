@@ -1,0 +1,95 @@
+cells:
+  - kind: 2
+    value: |
+      -- 먼저 예전에 만든 OCI_CRED가 있다면 지우기 (없으면 에러 무시)
+      BEGIN
+        dbms_vector.drop_credential('OCI_CRED');
+      EXCEPTION
+        WHEN OTHERS THEN NULL;
+      END;
+      /
+
+      -- 새 credential 생성
+      DECLARE
+        jo json_object_t;
+      BEGIN
+        jo := json_object_t();
+        jo.put('user_ocid',        '<USER_OCID>');
+        jo.put('tenancy_ocid',     '<TENANCY_OCID>');
+        jo.put('compartment_ocid', '<COMPARTMENT_OCID>');
+        jo.put('private_key',      '<PRIVATE_KEY>');   -- PEM 내용 (BEGIN/END 제외)
+        jo.put('fingerprint',      '<FINGERPRINT>');
+
+        dbms_vector.create_credential(
+          credential_name => 'OCI_CRED',
+          params          => json(jo.to_string)
+        );
+      END;
+      /
+    languageId: oracle-sql
+  - kind: 2
+    value: |
+      CREATE TABLE embedding_profiles (
+          name   VARCHAR2(100) PRIMARY KEY,
+          params JSON
+      );
+    languageId: oracle-sql
+  - kind: 2
+    value: >-
+      INSERT INTO embedding_profiles (name, params)
+
+      VALUES (
+        'COHERE_EMBED_PROFILE',
+        JSON('{
+          "provider": "ocigenai",
+          "credential_name": "RICHARD_COHERE_CRED",
+          "url": "https://inference.generativeai.us-chicago-1.oci.oraclecloud.com/20231130/actions/embedText",
+          "model": "cohere.embed-v4.0",
+          "batch_size": 16
+        }')
+      );
+    languageId: oracle-sql
+  - kind: 2
+    value: commit;
+    languageId: oracle-sql
+  - kind: 2
+    value: >
+      CREATE OR REPLACE FUNCTION get_embedding_profile(p_name VARCHAR2)
+
+      RETURN JSON
+
+      IS
+        v_params JSON;
+      BEGIN
+        SELECT params
+        INTO   v_params
+        FROM   embedding_profiles
+        WHERE  name = p_name;
+
+        RETURN v_params;
+      EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+          RAISE_APPLICATION_ERROR(-20000, 'Unknown embedding profile: ' || p_name);
+      END;
+
+      /
+    languageId: oracle-sql
+  - kind: 2
+    value: |
+      DECLARE
+        v_profile JSON;
+        v_vec     VECTOR(1536, FLOAT32); -- cohere.embed-v4.0 기준
+      BEGIN
+        v_profile := get_embedding_profile('COHERE_EMBED_PROFILE');
+        v_vec     := dbms_vector.utl_to_embedding('hello world', v_profile);
+
+        INSERT INTO richard_vectors (text, vector)
+        VALUES ('hello world', v_vec);
+
+        COMMIT;
+      END;
+      /
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
