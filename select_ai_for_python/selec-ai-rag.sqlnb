@@ -1,8 +1,8 @@
 cells:
   - kind: 1
-    value: "참고 URL:
-      https://snicholspa.github.io/tips_tricks_howtos/autonomous_database/selec\
-      t_ai_rag/"
+    value: |-
+      참고 URL: https://snicholspa.github.io/tips_tricks_howtos/autonomous_database/select_ai_rag/  
+      헬스케어 질의응답 시니리오 이용
     languageId: markdown
   - kind: 2
     value: |-
@@ -52,83 +52,56 @@ cells:
     value: 1. Create Credential to Access the OCI Gen AI Service and Object Storage
     languageId: markdown
   - kind: 2
-    value: >-
-      BEGIN
-          DBMS_CLOUD.CREATE_CREDENTIAL (
-              credential_name => 'RICHARD_CRED',
-              user_ocid => 'ocid1.user.oc1..aaaaaaaasfyz4iwypaq64trt6mgaipjhpq3ric5k3mzgqg2wfsqvt7a7qreq',
-              tenancy_ocid => 'ocid1.tenancy.oc1..aaaaaaaas7p34lrvrfzqp7h2jc4z2uemrcl6howfntsntlb2ei6zvuivqfua',
-              private_key => '-----BEGIN PRIVATE KEY-----
-      MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC1iNIkL/I0HW7T
-
-      3G3uhrfcPcx42UkCQNPCO3ic3QeTgBEg4bOutwq6oEtSKuyqcYBCNinBGVS4Vniz
-
-      o1ya1Q50nE8S+tyRGdtPJRSHAQReK4wjZZ5gfXp1jamcniH+JAaj9EUsD2FvAIP6
-
-      PzlJwev9aVHSFhdVA1JwFiOi7PFmmBKR7oUo91wVcz3ahX/18uRgIjRPOamRB2Wl
-
-      yqtj1gcP5NPQwvYPCLKG3XdCJwE4KJA2CiL1bo2cp/ClzkKnOaoyv2c2PW1aoJ2j
-
-      fm2sNtxR+gnIufRt3HlHhZXm+hASe8x3xfMVYFqKbCBIw17K5eBF9l3xkT+ipovr
-
-      Ckuknj83AgMBAAECggEATP4D/lQVefP3wsRNHaqmhTLyq1igpeN/zHOzsnfuFClv
-
-      Wk5PimzYkJGWkHljGeD8oFhfeiX3sB0AoVPKXWK6eEupH+gkryfTw2v7Gk0coKIA
-
-      lCyvsMXXL89O3f2VdjeqV1QtGERHsy/5SaQR9I3aPIa0LJGxAJ3hk2dYYuvycGud
-
-      G/CIh3dn+w1m5cAYyvSjVxn4priLXTBMrhv3qhoEDfa30/lDELWwNQX2PWhsWc/Y
-
-      /J2vGUcmwu7Kk0c5OKQAYZ4GjUPVMHiAam3LUNaBgAhBXPgmvBCxAt3//ST3RRhn
-
-      ScUO1+STC2veDkKqUSRcgU0cLJG74EPRAmtN4wjVOQKBgQDdR/9dPtcTdEbD5dq8
-
-      prOF5/L/IF8ECPopaKI+N6pvPFMPu7bhdWoj9TJk8Lb10z6OmvsjKieBgKr/CXkY
-
-      k9zpTn1T2LWuH86zZyv+KhYqb9vjuZDpvfeWtHTU0x4Z4L66SxS3YB9U+KuEhlsg
-
-      11QNruHy6V4n3x+MH6v+oTzA7wKBgQDSBFm0GhMZk1BGz32MzuQq6w81nmVmpIAR
-
-      ftyQk1vd0tWtwCEHTja315zsISlLaDDpijwXCUE3iMcOJvceqmDwdMse6FZMWowO
-
-      pzHBfIU4YgoYNt6gbYpZTThqEXXdGJybO8LxeZGL48wGS9yVZOYHiHZUxixNBXX5
-
-      8stEgSlWOQKBgHfE0GMX8DGHbgX6Ezqov+JqeQu96a+1bDGdgLNMTeOHMy4A3CuL
-
-      8bckr/ISl/TWMbXeDLAr0NY3XlZMOk8jOR7ObOdFFJD6hlZ0MUuQXA78HHhVqCnb
-
-      uHbJlbLb0h8PliwfF0dpr4u+TJeeYRSVd9kwHvvrdBsAmYKuYdmgS9HhAoGBAJFt
-
-      3cgvfiZpsl82c1Q8OBfYKfIRO1p2cxCqboXW5PiYdMsajkSGzrFDpzCEThofji9K
-
-      QA4bpIOWPXD5XopnpTUdS0Kd1JSO5wmGkZfQaFgA28ikxkkFUZZBON2KNbnivx9n
-
-      pLieXEEofzGk+pyhAAEbaAWQLUEwlN9+V2+amUtRAoGAIs1H4R7IbDAeDIagLe9h
-
-      lr+I3sAfO2gCGcaqOmah8y09zdDfXTV9MYFgYzAXygVjqa49r06oQKCBPRWzXLvQ
-
-      LMMZo/7YsMyWX/8+tJG4ud/GX63plngNC9BB+xA92ScoKP1BgTo/WMWcXI9m5L7Y
-
-      kt1r79pD1jqAI2pHIQaVXRY=
-
-      -----END PRIVATE KEY-----',
-              fingerprint => '11:f7:74:1e:9f:1e:a4:03:53:cc:63:70:c6:7e:fd:b4'
-          );
-      END;
-
-      /
+    value: |-
+      -- BEGIN
+      --     DBMS_CLOUD.CREATE_CREDENTIAL (
+      --         credential_name => 'RICHARD_CRED',
+      --         user_ocid => 'ocid1.user.oc1..aaaaaaaasfyz4iwypaq64trt6mgaipjhpq3ric5k3mzgqg2wfsqvt7a7qreq',
+      --         tenancy_ocid => 'ocid1.tenancy.oc1..aaaaaaaas7p34lrvrfzqp7h2jc4z2uemrcl6howfntsntlb2ei6zvuivqfua',
+      --         private_key => '-----BEGIN PRIVATE KEY-----
+      -- MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC1iNIkL/I0HW7T
+      -- 3G3uhrfcPcx42UkCQNPCO3ic3QeTgBEg4bOutwq6oEtSKuyqcYBCNinBGVS4Vniz
+      -- o1ya1Q50nE8S+tyRGdtPJRSHAQReK4wjZZ5gfXp1jamcniH+JAaj9EUsD2FvAIP6
+      -- PzlJwev9aVHSFhdVA1JwFiOi7PFmmBKR7oUo91wVcz3ahX/18uRgIjRPOamRB2Wl
+      -- yqtj1gcP5NPQwvYPCLKG3XdCJwE4KJA2CiL1bo2cp/ClzkKnOaoyv2c2PW1aoJ2j
+      -- fm2sNtxR+gnIufRt3HlHhZXm+hASe8x3xfMVYFqKbCBIw17K5eBF9l3xkT+ipovr
+      -- Ckuknj83AgMBAAECggEATP4D/lQVefP3wsRNHaqmhTLyq1igpeN/zHOzsnfuFClv
+      -- Wk5PimzYkJGWkHljGeD8oFhfeiX3sB0AoVPKXWK6eEupH+gkryfTw2v7Gk0coKIA
+      -- lCyvsMXXL89O3f2VdjeqV1QtGERHsy/5SaQR9I3aPIa0LJGxAJ3hk2dYYuvycGud
+      -- G/CIh3dn+w1m5cAYyvSjVxn4priLXTBMrhv3qhoEDfa30/lDELWwNQX2PWhsWc/Y
+      -- /J2vGUcmwu7Kk0c5OKQAYZ4GjUPVMHiAam3LUNaBgAhBXPgmvBCxAt3//ST3RRhn
+      -- ScUO1+STC2veDkKqUSRcgU0cLJG74EPRAmtN4wjVOQKBgQDdR/9dPtcTdEbD5dq8
+      -- prOF5/L/IF8ECPopaKI+N6pvPFMPu7bhdWoj9TJk8Lb10z6OmvsjKieBgKr/CXkY
+      -- k9zpTn1T2LWuH86zZyv+KhYqb9vjuZDpvfeWtHTU0x4Z4L66SxS3YB9U+KuEhlsg
+      -- 11QNruHy6V4n3x+MH6v+oTzA7wKBgQDSBFm0GhMZk1BGz32MzuQq6w81nmVmpIAR
+      -- ftyQk1vd0tWtwCEHTja315zsISlLaDDpijwXCUE3iMcOJvceqmDwdMse6FZMWowO
+      -- pzHBfIU4YgoYNt6gbYpZTThqEXXdGJybO8LxeZGL48wGS9yVZOYHiHZUxixNBXX5
+      -- 8stEgSlWOQKBgHfE0GMX8DGHbgX6Ezqov+JqeQu96a+1bDGdgLNMTeOHMy4A3CuL
+      -- 8bckr/ISl/TWMbXeDLAr0NY3XlZMOk8jOR7ObOdFFJD6hlZ0MUuQXA78HHhVqCnb
+      -- uHbJlbLb0h8PliwfF0dpr4u+TJeeYRSVd9kwHvvrdBsAmYKuYdmgS9HhAoGBAJFt
+      -- 3cgvfiZpsl82c1Q8OBfYKfIRO1p2cxCqboXW5PiYdMsajkSGzrFDpzCEThofji9K
+      -- QA4bpIOWPXD5XopnpTUdS0Kd1JSO5wmGkZfQaFgA28ikxkkFUZZBON2KNbnivx9n
+      -- pLieXEEofzGk+pyhAAEbaAWQLUEwlN9+V2+amUtRAoGAIs1H4R7IbDAeDIagLe9h
+      -- lr+I3sAfO2gCGcaqOmah8y09zdDfXTV9MYFgYzAXygVjqa49r06oQKCBPRWzXLvQ
+      -- LMMZo/7YsMyWX/8+tJG4ud/GX63plngNC9BB+xA92ScoKP1BgTo/WMWcXI9m5L7Y
+      -- kt1r79pD1jqAI2pHIQaVXRY=
+      -- -----END PRIVATE KEY-----',
+      --         fingerprint => '11:f7:74:1e:9f:1e:a4:03:53:cc:63:70:c6:7e:fd:b4'
+      --     );
+      -- END;
+      -- /
     languageId: oracle-sql
   - kind: 2
     value: select * from user_credentials;
     languageId: oracle-sql
   - kind: 2
     value: |-
-      BEGIN
-          DBMS_CLOUD.DROP_CREDENTIAL (
-              credential_name => 'RICHARD_COHERE_CRED'
-          );
-      END;
-      /
+      -- BEGIN
+      --     DBMS_CLOUD.DROP_CREDENTIAL (
+      --         credential_name => 'RICHARD_COHERE_CRED'
+      --     );
+      -- END;
+      -- /
     languageId: oracle-sql
   - kind: 1
     value: |-
@@ -145,48 +118,46 @@ cells:
     value: This test connectivity to OCI Gen AI Service
     languageId: markdown
   - kind: 2
-    value: >
-      set serveroutput on;
-
-      DECLARE
-          -- https://docs.oracle.com/en-us/iaas/Content/generative-ai/pretrained-models.htm
-          gen_ai_endpoint     varchar2(500) := 'https://inference.generativeai.us-chicago-1.oci.oraclecloud.com';
-          gen_ai_model         varchar2(500) := 'cohere.command-r-08-2024'; --cohere.command-r-08-2024 xai.grok-4
-          compartment_ocid     varchar2(500) := 'ocid1.compartment.oc1..aaaaaaaalpw23nt2lebhpddcvkangwux6igx3jxvtpbr4cnm5j62xlkxh2sa';
-          api_cred_name         varchar2(500) := 'RICHARD_CRED';
-          ai_prompt             varchar2(4000) := 'who is Babe Ruth?';
-          resp                 dbms_cloud_types.RESP;
-      BEGIN
-          resp := dbms_cloud.send_request(
-              credential_name => api_cred_name,
-              uri => gen_ai_endpoint || '/20231130/actions/chat',
-              method => dbms_cloud.METHOD_POST,
-              body => utl_raw.cast_to_raw(json_object(
-                  'compartmentId'     value compartment_ocid,
-                  'servingMode'       value
-                      (json_object(
-                          'modelId'               value gen_ai_model,
-                          'servingType'           value 'ON_DEMAND'
-                          )),
-      			'chatRequest'           value 
-      				(json_object(
-      					'message'           value ai_prompt,
-      					-- 'apiFormat'         value 'GENERIC',
-                          'apiFormat'         value 'COHERE',
-      					'maxTokens'         value 2000,
-      					'temperature'       value 0.75,
-      					'frequencyPenalty'  value 0,
-      					'presencePenalty'   value 0,
-      					'topP'              value 1.0,
-      					'topK'              value 0,
-      					'isStream'          value false
-      				))
-              ))
-          );
-          dbms_output.put_line(dbms_cloud.get_response_text(resp)); 
-      END;
-
-      /
+    value: |
+      -- set serveroutput on;
+      -- DECLARE
+      --     -- https://docs.oracle.com/en-us/iaas/Content/generative-ai/pretrained-models.htm
+      --     gen_ai_endpoint     varchar2(500) := 'https://inference.generativeai.us-chicago-1.oci.oraclecloud.com';
+      --     gen_ai_model         varchar2(500) := 'cohere.command-r-08-2024'; --cohere.command-r-08-2024 xai.grok-4
+      --     compartment_ocid     varchar2(500) := 'ocid1.compartment.oc1..aaaaaaaalpw23nt2lebhpddcvkangwux6igx3jxvtpbr4cnm5j62xlkxh2sa';
+      --     api_cred_name         varchar2(500) := 'RICHARD_CRED';
+      --     ai_prompt             varchar2(4000) := 'who is Babe Ruth?';
+      --     resp                 dbms_cloud_types.RESP;
+      -- BEGIN
+      --     resp := dbms_cloud.send_request(
+      --         credential_name => api_cred_name,
+      --         uri => gen_ai_endpoint || '/20231130/actions/chat',
+      --         method => dbms_cloud.METHOD_POST,
+      --         body => utl_raw.cast_to_raw(json_object(
+      --             'compartmentId'     value compartment_ocid,
+      --             'servingMode'       value
+      --                 (json_object(
+      --                     'modelId'               value gen_ai_model,
+      --                     'servingType'           value 'ON_DEMAND'
+      --                     )),
+      -- 			'chatRequest'           value 
+      -- 				(json_object(
+      -- 					'message'           value ai_prompt,
+      -- 					-- 'apiFormat'         value 'GENERIC',
+      --                     'apiFormat'         value 'COHERE',
+      -- 					'maxTokens'         value 2000,
+      -- 					'temperature'       value 0.75,
+      -- 					'frequencyPenalty'  value 0,
+      -- 					'presencePenalty'   value 0,
+      -- 					'topP'              value 1.0,
+      -- 					'topK'              value 0,
+      -- 					'isStream'          value false
+      -- 				))
+      --         ))
+      --     );
+      --     dbms_output.put_line(dbms_cloud.get_response_text(resp)); 
+      -- END;
+      -- /
     languageId: oracle-sql
   - kind: 1
     value: "### Create Select AI RAG Profile"
@@ -195,20 +166,29 @@ cells:
     value: 1. Create Select AI for RAG Profile
     languageId: markdown
   - kind: 2
+    value: |-
+      BEGIN
+          DBMS_CLOUD_AI.drop_profile(
+              profile_name => 'richard_select_ai_rag'
+          );
+      END;
+      /
+    languageId: oracle-sql
+  - kind: 2
     value: >-
       BEGIN
           DBMS_CLOUD_AI.CREATE_PROFILE(
-              profile_name => 'richard_select_ai_rag',    # 소문자로 할 것 => 대문자시 변수로 받아들임.
+              profile_name => 'richard_select_ai_rag', 
               attributes => 
                   '{ "provider": "oci",
                       "credential_name": "RICHARD_CRED",
                       "region": "us-chicago-1",
                       "oci_compartment_id": "ocid1.compartment.oc1..aaaaaaaalpw23nt2lebhpddcvkangwux6igx3jxvtpbr4cnm5j62xlkxh2sa",
-                      "vector_index_name": "RICHAR_VECTOR_INDEX_NAME",
+                      "vector_index_name": "richard_vector_index_name",
                       "embedding_model": "cohere.embed-v4.0",
-                      "model": "xai.grok-4",
+                      "model": "xai.grok-4-fast-non-reasoning",
                       "max_tokens": 2000,
-                      "temperature": 0.75
+                      "temperature": 0.1
                   }'
           );
       END;
@@ -229,42 +209,128 @@ cells:
     value: "### Create Select AI RAG Vector Index"
     languageId: markdown
   - kind: 2
+    value: |-
+      BEGIN
+        -- 벡터 인덱스 삭제
+        DBMS_CLOUD_AI.DROP_VECTOR_INDEX(
+          index_name   => 'richard_vector_index_name',
+          include_data => TRUE,
+          force        => TRUE
+        );
+      END;
+      /
+    languageId: oracle-sql
+  - kind: 2
     value: >-
       BEGIN
           dbms_cloud_ai.CREATE_VECTOR_INDEX(
-              index_name => 'richard_vector_index',
+              index_name => 'richard_vector_index_name',
               attributes => 
                   '{
                       "vector_db_provider": "oracle",
-                      "vector_table_name": "richar_vector_table",
+                      "vector_table_name": "richard_vector_table",
                       "object_storage_credential_name": "RICHARD_CRED",
                       "location": "https://objectstorage.us-chicago-1.oraclecloud.com/n/cnbkloa0ci62/b/saltware-bucket-20251215-1544/o/",
                       "profile_name": "richard_select_ai_rag",
                       "vector_dimension": 1536,
                       "vector_distance_metric": "cosine",
-                      "chunk_overlap": 0,
-                      "chunk_size": 1536
+                      "chunk_overlap": 100,
+                      "chunk_size": 1024
                   }'
           );
       END;
 
       /
     languageId: oracle-sql
+  - kind: 2
+    value: |-
+      -- 생성된 파이프라인의 현재상태 조회
+      SELECT pipeline_id, pipeline_name, status, last_execution, status_table
+      FROM user_cloud_pipelines;
+    languageId: oracle-sql
+  - kind: 2
+    value: |-
+      -- 현재 파이프라인의 상세처리내역 조회. 반드시 확인할 것
+      SELECT *
+      FROM PIPELINE$22$40_STATUS;
+    languageId: oracle-sql
+  - kind: 2
+    value: |-
+      SELECT COUNT(*) 
+      FROM   richard_vector_table;   -- 프로필에서 지정한 vector_table_name
+    languageId: oracle-sql
+  - kind: 2
+    value: |-
+      --  vector index name 활성화 여부 확이
+      SELECT index_name, status
+      FROM   user_cloud_vector_indexes
+      WHERE  index_name = UPPER('richard_vector_index_name');
+    languageId: oracle-sql
+  - kind: 2
+    value: >
+      -- location 객체 확인
+
+      SELECT object_name, bytes
+
+      FROM   DBMS_CLOUD.LIST_OBJECTS(
+               credential_name => 'RICHARD_CRED',
+               location_uri    => 'https://objectstorage.us-chicago-1.oraclecloud.com/n/cnbkloa0ci62/b/saltware-bucket-20251215-1544/o/'
+             )
+      FETCH FIRST 50 ROWS ONLY;
+    languageId: oracle-sql
   - kind: 1
     value: 2. To view the Select AI Vector Indexes and their attributes, execute the
       following SQL Statement
     languageId: markdown
   - kind: 2
-    value: >-
-      SELECT a.index_name, c.index_subtype, a.status, b.attribute_name,
-      b.attribute_value
-
-      from USER_CLOUD_VECTOR_INDEXES a, USER_CLOUD_AI_PROFILE_ATTRIBUTES b,
-      user_indexes c
-
-      WHERE a.index_id = b.index_id and a.index_name = c.index_name
-
-      order by a.index_name, b.attribute_name;
+    value: |
+      SELECT  a.index_name,
+              c.index_subtype,
+              a.status,
+              b.attribute_name,
+              b.attribute_value
+      FROM    user_cloud_vector_indexes          a
+      JOIN    user_cloud_vector_index_attributes b
+                ON a.index_name = b.index_name
+      JOIN    user_indexes                       c
+                ON a.index_name = c.index_name
+      ORDER BY a.index_name, b.attribute_name;
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
+  - kind: 1
+    value: 6. Set Select AI RAG Profile
+    languageId: markdown
+  - kind: 2
+    value: |-
+      BEGIN
+          DBMS_CLOUD_AI.set_profile(
+              PROFILE_NAME=> 'richard_select_ai_rag'
+          );
+      END;
+      /
+    languageId: oracle-sql
+  - kind: 1
+    value: To list What AI Profile is currently set for the user session, execute
+      the following SQL Statement
+    languageId: markdown
+  - kind: 2
+    value: SELECT DBMS_cloud_ai.get_profile from dual
+    languageId: oracle-sql
+  - kind: 1
+    value: 7. Test/Use Select AI RAG
+    languageId: markdown
+  - kind: 2
+    value: |-
+      -- narrate는 prompt를 보여 주는 것 (설명한느 것)
+      select ai narrate '건강검진을 함께 보는 시나리오 찾아 줘';
+    languageId: oracle-sql
+  - kind: 2
+    value: select ai narrate '단순 집계/분호 조회 시나라오 찾아 줘'
     languageId: oracle-sql
   - kind: 2
     value: ""
