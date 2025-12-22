@@ -1,0 +1,72 @@
+cells:
+  - kind: 1
+    value: "### Chinook DB table을 활용한 Select AI 검증"
+    languageId: markdown
+  - kind: 1
+    value: |-
+      - Credential 은 OCI$RESOURCE_PRINCIPAL을 사용
+      - 곧바로 Profile 생성
+    languageId: markdown
+  - kind: 2
+    value: |-
+      BEGIN
+          DBMS_CLOUD_AI.drop_profile(
+              profile_name => 'sai_richard_profile',
+              force => TRUE
+          );
+      END;
+      /
+    languageId: oracle-sql
+  - kind: 2
+    value: |
+      BEGIN
+          DBMS_CLOUD_AI.CREATE_PROFILE(
+              profile_name => 'sai_richard_profile',
+              attributes => '{
+                  "provider": "oci",
+                  "model": "xai.grok-4-fast-non-reasoning",
+                  "region": "us-chicago-1",
+                  "credential_name": "OCI$RESOURCE_PRINCIPAL",
+                  "comments": "true",
+                  "constraints": "true",
+                  "temperature": 0.1,
+                  "max_tokens": 2000,
+                  "object_list": [
+                      {"owner": "saltware", "name": "media_types"},
+                      {"owner": "saltware", "name": "genres"},
+                      {"owner": "saltware", "name": "playlists"},
+                      {"owner": "saltware", "name": "playlist_track"},
+                      {"owner": "saltware", "name": "tracks"},
+                      {"owner": "saltware", "name": "artists"},
+                      {"owner": "saltware", "name": "invoices"},
+                      {"owner": "saltware", "name": "invoice_items"},
+                      {"owner": "saltware", "name": "albums"},
+                      {"owner": "saltware", "name": "customers"},
+                      {"owner": "saltware", "name": "employees"}
+                  ]
+              }'
+          );
+      END;
+      /
+    languageId: oracle-sql
+  - kind: 2
+    value: |-
+      -- profile 전환
+      EXEC DBMS_CLOUD_AI.SET_PROFILE('sai_richard_profile')
+    languageId: oracle-sql
+  - kind: 2
+    value: |-
+      -- 현 세션에서의 profile 획득
+      select  DBMS_CLOUD_AI.GET_PROFILE() FROM dual;
+    languageId: oracle-sql
+  - kind: 2
+    value: select ai showsql '안녕! `customers` 테이블에 총 몇 명의 고객이 있는지 알려줄 수 있어? 전체 고객 수만
+      알려줘.';
+    languageId: oracle-sql
+  - kind: 2
+    value: select ai showsql '총 지출액이 가장 높은 상위 5명의 고객 ID와 이름, 그리고 각각이 청구서에 사용한 총 금액을
+      알려 주세요.';
+    languageId: oracle-sql
+  - kind: 2
+    value: ""
+    languageId: oracle-sql
